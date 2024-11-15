@@ -16,22 +16,25 @@ const Container = styled.section`
 const LeftCon = styled.div`
   width: 30%;
   margin-right: 125px;
+  padding: 0 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   h3 {
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 900;
     color: #fff;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    text-align: center;
   }
 `;
 const SubmitWrap = styled.div`
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 50px;
   p {
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 16px;
     letter-spacing: 0.2px;
   }
@@ -66,7 +69,7 @@ const WordViewWrap = styled.div`
 const Word = styled.h2`
   color: #00304e;
   opacity: 0.8;
-  font-size: 80px;
+  font-size: 70px;
   font-weight: 900;
   margin-bottom: 20px;
 `;
@@ -77,6 +80,7 @@ const Definition = styled.p`
   font-weight: 500;
 `;
 const RightCon = styled.div`
+  position: relative;
   padding: 120px 130px;
   width: 70%;
   height: 100%;
@@ -84,10 +88,25 @@ const RightCon = styled.div`
   border-radius: 50px;
 `;
 
+const Snake = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 30vw;
+`;
+
+const Think = styled.div`
+  position: absolute;
+  left: 45%;
+  bottom: 35%;
+  width: 30vw;
+  max-width: 500px;
+`;
+
 const Home = () => {
   const [input, setInput] = useState("");
-  const [word, setWord] = useState("Word");
-  const [definition, setDefinition] = useState("That word's definition");
+  const [word, setWord] = useState("");
+  const [definition, setDefinition] = useState("");
   const [relatedWords, setRelatedWords] = useState([]);
 
   const handleSearch = async (e) => {
@@ -102,29 +121,79 @@ const Home = () => {
     setRelatedWords(synonyms);
   };
 
+  const handleWordClick = async (clickedWord) => {
+    const def = await fetchDefinition(clickedWord);
+    const synonyms = await fetchSynonyms(clickedWord);
+    setWord(clickedWord);
+    setDefinition(def);
+    setRelatedWords(synonyms);
+  };
+
+  const resetToMain = () => {
+    setInput("");
+    setWord("");
+    setDefinition("");
+    setRelatedWords([]);
+  };
+
   return (
     <Container>
-      <LeftCon>
-        <h3>MOOROBOROS</h3>
-        <SubmitWrap>
-          <Form onSubmit={handleSearch}>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Enter the word on your mind!"
+      {word ? (
+        <>
+          <LeftCon>
+            <h3 onClick={resetToMain} style={{ cursor: "pointer" }}>
+              MOOROBOROS
+            </h3>
+            <SubmitWrap>
+              <Form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Enter the word on your mind!"
+                />
+              </Form>
+              <p>Please enter nouns only!</p>
+            </SubmitWrap>
+            <WordViewWrap>
+              <Word>{word}</Word>
+              <Definition>{definition}</Definition>
+            </WordViewWrap>
+          </LeftCon>
+          <RightCon>
+            <WordCloudWrap
+              mainWord={word}
+              relatedWords={relatedWords}
+              onWordClick={handleWordClick}
             />
-          </Form>
-          <p>Please enter nouns only!</p>
-        </SubmitWrap>
-        <WordViewWrap>
-          <Word>{word}</Word>
-          <Definition>{definition}</Definition>
-        </WordViewWrap>
-      </LeftCon>
-      <RightCon>
-        <WordCloudWrap initialWord={word} fetchSynonyms={fetchSynonyms} />
-      </RightCon>
+          </RightCon>
+        </>
+      ) : (
+        <>
+          <LeftCon>
+            <h3>MOOROBOROS</h3>
+            <SubmitWrap>
+              <Form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Enter the word on your mind!"
+                />
+              </Form>
+              <p>Please enter nouns only!</p>
+            </SubmitWrap>
+          </LeftCon>
+          <RightCon>
+            <Snake>
+              <img src="../imgs/snake.png" alt="snake" />
+            </Snake>
+            <Think>
+              <img src="../imgs/thinking.png" alt="thinking" />
+            </Think>
+          </RightCon>
+        </>
+      )}
     </Container>
   );
 };

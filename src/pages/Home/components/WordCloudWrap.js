@@ -1,5 +1,20 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const bounceIn = keyframes`
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
 
 const WordCloudContainer = styled.section`
   width: 100%;
@@ -66,6 +81,14 @@ const Main = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+  animation: ${({ isBouncing }) => (isBouncing ? bounceIn : "none")} 0.6s
+    ease-in-out;
+  cursor: pointer;
 `;
 const Con1 = styled.div`
   width: 200px;
@@ -79,6 +102,14 @@ const Con1 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${({ isBouncing }) => (isBouncing ? bounceIn : "none")} 0.6s
+    ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+  cursor: pointer;
 `;
 const Con2 = styled.div`
   width: 170px;
@@ -92,6 +123,13 @@ const Con2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${({ isBouncing }) => (isBouncing ? bounceIn : "none")} 0.6s
+    ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+  cursor: pointer;
 `;
 const Con3 = styled.div`
   width: 120px;
@@ -105,23 +143,26 @@ const Con3 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: ${({ isBouncing }) => (isBouncing ? bounceIn : "none")} 0.6s
+    ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
+  cursor: pointer;
 `;
 
-const WordCloudWrap = ({ initialWord, fetchSynonyms }) => {
-  const [mainWord, setMainWord] = useState(initialWord);
-  const [relatedWords, setRelatedWords] = useState([]);
+const WordCloudWrap = ({ mainWord, relatedWords, onWordClick }) => {
+  const [isBouncing, setIsBouncing] = useState(false);
 
   useEffect(() => {
-    const fetchRelatedWords = async () => {
-      const synonyms = await fetchSynonyms(mainWord);
-      setRelatedWords(synonyms);
-    };
-    fetchRelatedWords();
-  }, [mainWord, fetchSynonyms]);
+    setIsBouncing(true);
+    const timeout = setTimeout(() => setIsBouncing(false), 600);
+    return () => clearTimeout(timeout);
+  }, [mainWord]);
 
   const ClickHandler = (e) => {
     const clickedWord = e.target.innerText;
-    setMainWord(clickedWord);
     if (onWordClick) {
       onWordClick(clickedWord);
     }
@@ -134,37 +175,65 @@ const WordCloudWrap = ({ initialWord, fetchSynonyms }) => {
   return (
     <WordCloudContainer>
       <Wrap1>
-        <Con3 onClick={ClickHandler}>{con3Words[0]}</Con3>
+        <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con3Words[0]}
+        </Con3>
         <BottomWrap>
-          <Con3 onClick={ClickHandler}>{con3Words[1]}</Con3>
-          <Con3 onClick={ClickHandler}>{con3Words[2]}</Con3>
+          <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+            {con3Words[1]}
+          </Con3>
+          <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+            {con3Words[2]}
+          </Con3>
         </BottomWrap>
       </Wrap1>
 
       <Wrap2>
-        <Con2 onClick={ClickHandler}>{con2Words[0]}</Con2>
-        <Con1 onClick={ClickHandler}>{con1Words[0]}</Con1>
-        <Con2 onClick={ClickHandler}>{con2Words[1]}</Con2>
+        <Con2 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con2Words[0]}
+        </Con2>
+        <Con1 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con1Words[0]}
+        </Con1>
+        <Con2 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con2Words[1]}
+        </Con2>
       </Wrap2>
 
       <Wrap3>
-        <Con1 onClick={ClickHandler}>{con1Words[1]}</Con1>
-        <Main>{mainWord}</Main>
-        <Con1 onClick={ClickHandler}>{con1Words[2]}</Con1>
+        <Con1 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con1Words[1]}
+        </Con1>
+        <Main isBouncing={isBouncing}>{mainWord}</Main>
+        <Con1 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con1Words[2]}
+        </Con1>
       </Wrap3>
 
       <Wrap4>
-        <Con2 onClick={ClickHandler}>{con2Words[2]}</Con2>
-        <Con1 onClick={ClickHandler}>{con1Words[3]}</Con1>
-        <Con2 onClick={ClickHandler}>{con2Words[3]}</Con2>
+        <Con2 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con2Words[2]}
+        </Con2>
+        <Con1 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con1Words[3]}
+        </Con1>
+        <Con2 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con2Words[3]}
+        </Con2>
       </Wrap4>
 
       <Wrap5>
         <TopWrap>
-          <Con3 onClick={ClickHandler}>{con3Words[3]}</Con3>
-          <Con3 onClick={ClickHandler}>{con3Words[4]}</Con3>
+          <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+            {con3Words[3]}
+          </Con3>
+          <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+            {con3Words[4]}
+          </Con3>
         </TopWrap>
-        <Con3 onClick={ClickHandler}>{con3Words[5]}</Con3>
+        <Con3 isBouncing={isBouncing} onClick={ClickHandler}>
+          {con3Words[5]}
+        </Con3>
       </Wrap5>
     </WordCloudContainer>
   );
