@@ -8,11 +8,9 @@ const App = () => {
   const [synonyms, setSynonyms] = useState([]);
 
   const handleSearch = async () => {
-    // 사전 정의 가져오기
     const fetchedDefinition = await fetchDefinition(input);
     setDefinition(fetchedDefinition);
 
-    // 유의어 가져오기
     const fetchedSynonyms = await fetchSynonyms(input);
     setSynonyms(fetchedSynonyms);
   };
@@ -27,6 +25,10 @@ const App = () => {
         placeholder="Enter an English word"
       />
       <button onClick={handleSearch}>Search</button>
+      <div>
+        <h2>Your Word:</h2>
+        <p>{definition}</p>
+      </div>
       <div>
         <h2>Definition:</h2>
         <p>{definition}</p>

@@ -1,9 +1,16 @@
-// import { HashRouter } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import PageNotFound from "./pages/PageNotFound";
+import Home from "./pages/Home/Home";
 
-// const Router = () => {
-//   <>
-//     <HashRouter></HashRouter>
-//   </>;
-// };
+const Router = () => {
+  <>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<PageNotFound />} />
+      </Routes>
+    </HashRouter>
+  </>;
+};
 
-// export
+export default Router;
