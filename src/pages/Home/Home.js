@@ -69,7 +69,8 @@ const WordViewWrap = styled.div`
 const Word = styled.h2`
   color: #00304e;
   opacity: 0.8;
-  font-size: 70px;
+  font-size: ${({ wordLength }) =>
+    wordLength > 10 ? "45px" : wordLength > 6 ? "60px" : "70px"};
   font-weight: 900;
   margin-bottom: 20px;
 `;
@@ -156,7 +157,7 @@ const Home = () => {
               <p>Please enter nouns only!</p>
             </SubmitWrap>
             <WordViewWrap>
-              <Word>{word}</Word>
+              <Word wordLength={word.length}>{word}</Word>
               <Definition>{definition}</Definition>
             </WordViewWrap>
           </LeftCon>

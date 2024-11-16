@@ -25,7 +25,7 @@ const SnakeIcon = styled.img`
   animation: ${rotate} 2s linear infinite;
   width: 250px;
   height: 250px;
-  margin-top: 50px;
+  margin-top: 80px;
 `;
 
 function InitialScreen() {
