@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/Mooroboros/static/js/main.3ae7fc55.js",
+    "main.js": "/Mooroboros/static/js/main.ca59de45.js",
     "static/media/snake.png": "/Mooroboros/static/media/snake.a163fb4778af09fef900.png",
     "static/media/thinking.png": "/Mooroboros/static/media/thinking.e02818e1df6379719fa9.png",
     "index.html": "/Mooroboros/index.html",
-    "main.3ae7fc55.js.map": "/Mooroboros/static/js/main.3ae7fc55.js.map"
+    "main.ca59de45.js.map": "/Mooroboros/static/js/main.ca59de45.js.map"
   },
   "entrypoints": [
-    "static/js/main.3ae7fc55.js"
+    "static/js/main.ca59de45.js"
   ]
 }
