@@ -287,10 +287,10 @@ const Home = () => {
           </LeftCon>
           <RightCon>
             <Snake>
-              <img src="/imgs/snake.png" alt="snake" />
+              <img src="../../imgs/snake.png" alt="snake" />
             </Snake>
             <Think>
-              <img src="/imgs/thinking.png" alt="thinking" />
+              <img src="../../imgs/thinking.png" alt="thinking" />
             </Think>
           </RightCon>
         </>
