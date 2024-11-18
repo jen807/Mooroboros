@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import WordCloudWrap from "./components/WordCloudWrap";
-// import { useFormState } from "react-hook-form";
 import { useState } from "react";
 import { fetchDefinition, fetchSynonyms } from "../../api";
 

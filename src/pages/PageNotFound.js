@@ -9,6 +9,13 @@ const Container = styled.div`
   background-color: #fff;
 `;
 
+const TilteWrapper = styled.div`
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const CloudWrapper = styled.div`
   background-image: url("${process.env.PUBLIC_URL}/imgs/Cloud.png");
   background-size: contain;
@@ -64,9 +71,11 @@ const PageNotFound = () => {
   return (
     <Container>
       <CloudWrapper></CloudWrapper>
-      <Title>404</Title>
-      <Subtitle>Sorry, we couldn't find this page</Subtitle>
-      <BackLink onClick={handleGoBack}>click here to go back</BackLink>
+      <TilteWrapper>
+        <Title>404</Title>
+        <Subtitle>Sorry, we couldn't find this page</Subtitle>
+        <BackLink onClick={handleGoBack}>click here to go back</BackLink>
+      </TilteWrapper>
       <SnakeWrapper>
         <SnakeIcon
           src={`${process.env.PUBLIC_URL}/imgs/snake.png`}
