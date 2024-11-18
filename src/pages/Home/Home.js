@@ -2,6 +2,8 @@ import styled from "styled-components";
 import WordCloudWrap from "./components/WordCloudWrap";
 import { useState } from "react";
 import { fetchDefinition, fetchSynonyms } from "../../api";
+import snakeImg from "../../components/imgs/snake.png";
+import thinkingImg from "../../components/imgs/thinking.png";
 
 const Container = styled.section`
   max-width: 1920px;
@@ -82,7 +84,6 @@ const Form = styled.form`
     font-size: calc(1vw + 0.5vh);
     box-sizing: border-box;
     font-weight: 800;
-
     letter-spacing: 0.2px;
 
     &::placeholder {
@@ -287,10 +288,10 @@ const Home = () => {
           </LeftCon>
           <RightCon>
             <Snake>
-              <img src="../../imgs/snake.png" alt="snake" />
+              <img src={snakeImg} alt="snake" />
             </Snake>
             <Think>
-              <img src="../../imgs/thinking.png" alt="thinking" />
+              <img src={thinkingImg} alt="thinking" />
             </Think>
           </RightCon>
         </>
