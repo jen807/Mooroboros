@@ -166,7 +166,7 @@ const RightCon = styled.div`
 
   @media screen and (max-width: 440px) {
     width: 100%;
-    height: 350px;
+    height: 300px;
     position: relative;
     top: -3vh;
     left: 0;
