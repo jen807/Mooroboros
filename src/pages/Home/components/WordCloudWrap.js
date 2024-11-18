@@ -23,6 +23,11 @@ const WordCloudContainer = styled.section`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 440px) {
+    width: 100%;
+    height: 100%;
+    padding: 40px 20px;
+  }
 `;
 
 const Wrap1 = styled.div`
@@ -38,6 +43,9 @@ const BottomWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 440px) {
+    margin-top: 5px;
+  }
 `;
 
 const Wrap2 = styled.div`
@@ -74,14 +82,17 @@ const TopWrap = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 440px) {
+    margin-bottom: 5px;
+  }
 `;
 
 const Main = styled.div`
-  width: 280px;
+  width: 36%;
   height: 120px;
   background-color: #b0dcff;
   font-size: ${({ wordLength }) =>
-    wordLength > 10 ? "40px" : wordLength > 6 ? "48px" : "65px"};
+    wordLength > 10 ? "2.2vw" : wordLength > 6 ? "2.5vw" : "3vw"};
   font-weight: 900;
   border-radius: 10px;
   color: #00304e;
@@ -97,15 +108,21 @@ const Main = styled.div`
   animation: ${({ isBouncing }) => (isBouncing ? bounceIn : "none")} 0.6s
     ease-in-out;
   cursor: pointer;
+  @media screen and (max-width: 440px) {
+    width: 120px;
+    height: 50px;
+    font-size: ${({ wordLength }) =>
+      wordLength > 10 ? "22px" : wordLength > 6 ? "24px" : "26px"};
+  }
 `;
 
 const Con1 = styled.div`
-  width: 200px;
-  height: 90px;
+  width: 27%;
+  height: 9vh;
   border-radius: 10px;
   background-color: #bfe3ff;
   font-size: ${({ wordLength }) =>
-    wordLength > 10 ? "25px" : wordLength > 6 ? "30px" : "40px"};
+    wordLength > 10 ? "1.6vw" : wordLength > 6 ? "1.8vw" : "2vw"};
   font-weight: 600;
   color: #5a84a1;
   text-align: center;
@@ -120,15 +137,22 @@ const Con1 = styled.div`
     transition: transform 0.3s;
   }
   cursor: pointer;
+  @media screen and (max-width: 440px) {
+    font-size: ${({ wordLength }) =>
+      wordLength > 10 ? "12px" : wordLength > 6 ? "16px" : "18px"};
+    width: 80px;
+    height: 40px;
+    border-radius: 8px;
+  }
 `;
 
 const Con2 = styled.div`
-  width: 170px;
-  height: 60px;
+  width: 25%;
+  height: 7vh;
   border-radius: 10px;
   background-color: #e8f5ff;
   font-size: ${({ wordLength }) =>
-    wordLength > 10 ? "20px" : wordLength > 6 ? "25px" : "28px"};
+    wordLength > 10 ? "1.1vw" : wordLength > 6 ? "1.3vw" : "1.5vw"};
   font-weight: 500;
   color: #6d8ca1;
   text-align: center;
@@ -143,15 +167,23 @@ const Con2 = styled.div`
     transition: transform 0.3s;
   }
   cursor: pointer;
+
+  @media screen and (max-width: 440px) {
+    font-size: ${({ wordLength }) =>
+      wordLength > 10 ? "11px" : wordLength > 6 ? "14px" : "16px"};
+    width: 85px;
+    height: 35px;
+    border-radius: 8px;
+  }
 `;
 
 const Con3 = styled.div`
-  width: 120px;
+  width: 28%;
   height: 45px;
   border-radius: 10px;
   background-color: #ececec;
   font-size: ${({ wordLength }) =>
-    wordLength > 10 ? "16px" : wordLength > 6 ? "18px" : "20px"};
+    wordLength > 10 ? "0.8vw" : wordLength > 6 ? "0.9vw" : "1vw"};
   font-weight: 400;
   color: #8a8a8a;
   text-align: center;
@@ -166,6 +198,14 @@ const Con3 = styled.div`
     transition: transform 0.3s;
   }
   cursor: pointer;
+
+  @media screen and (max-width: 440px) {
+    width: 75px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: ${({ wordLength }) =>
+      wordLength > 10 ? "10px" : wordLength > 6 ? "14px" : "16px"};
+  }
 `;
 
 const WordCloudWrap = ({ mainWord, relatedWords, onWordClick }) => {
