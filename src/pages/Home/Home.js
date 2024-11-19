@@ -43,12 +43,12 @@ const LeftCon = styled.div`
     width: 100%;
     position: absolute;
     margin-right: 0;
-    height: 95.6vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 13vh 0 15vh 0;
+    padding: 13vh 0 10vh 0;
 
     h3 {
       font-size: 30px;
@@ -67,6 +67,7 @@ const SubmitWrap = styled.div`
   }
 
   @media screen and (max-width: 440px) {
+    width: 90%;
     margin-top: 5vh;
     p {
       font-size: 12px;
@@ -102,7 +103,7 @@ const Form = styled.form`
       all: unset;
       width: 100%;
       border-bottom: 1px solid #fff;
-      padding: 1vh 1.75vw 1vh 0.5vw;
+      padding: 1vh 1vw;
       box-sizing: border-box;
       font-weight: 800;
       font-size: 20px;
@@ -166,7 +167,7 @@ const RightCon = styled.div`
 
   @media screen and (max-width: 440px) {
     width: 100%;
-    height: 300px;
+    height: 350px;
     position: relative;
     top: -3vh;
     left: 0;
