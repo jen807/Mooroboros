@@ -1,9 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import WordCloudWrap from "./components/WordCloudWrap";
 import { useState } from "react";
 import { fetchDefinition, fetchSynonyms } from "../../api";
 import snakeImg from "../../components/imgs/snake.png";
 import thinkingImg from "../../components/imgs/thinking.png";
+// import what from "../../components/imgs/what.png"
+import feedback from "../../components/imgs/feedback.png"
+import PageTitle from "../../components/pageTitle";
+import he from "../../components/imgs/he.svg"
 
 const Container = styled.section`
   max-width: 1920px;
@@ -62,7 +66,7 @@ const SubmitWrap = styled.div`
   p {
     margin-left: 0.5vw;
     margin-top: 0.8vh;
-    font-size: calc(0.5vw + 0.5vh);
+    font-size: calc(0.8vw + 0.5vh);
     letter-spacing: 0.2px;
   }
 
@@ -82,10 +86,11 @@ const Form = styled.form`
     width: 100%;
     border-bottom: 1px solid #fff;
     padding: 1vh;
-    font-size: calc(1vw + 0.5vh);
+    font-size: calc(1.1vw + 0.5vh);
     box-sizing: border-box;
     font-weight: 800;
     letter-spacing: 0.2px;
+    margin-bottom: 8px;
 
     &::placeholder {
       color: #fff;
@@ -202,6 +207,48 @@ const Think = styled.div`
   }
 `;
 
+const Thinking = styled.div`
+position: absolute;
+  right: 3%;
+  top: 5%;
+  height: 25vh;
+  width: 25vw;
+  max-width: 500px;
+
+  @media screen and (max-width: 440px) {
+    width: 45vw;
+    left: 40%;
+    bottom: 30%;
+  }
+`;
+
+const ani = keyframes`
+0%{
+  transform: translateY(0px);
+}
+50%{
+  transform: translateY(20px);
+}
+100%{
+  transform: translateY(0px);
+}
+`;
+
+  const He = styled.div`
+  position: absolute;
+  left: 36%;
+  top: 20%;
+  width: 50px;
+  height: 50px;
+  animation-name: ${ani};
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  `;
+
+
+
+
 const Home = () => {
   const [input, setInput] = useState("");
   const [word, setWord] = useState("");
@@ -240,6 +287,8 @@ const Home = () => {
   };
 
   return (
+   <>
+   <PageTitle title={"Home"}/>
     <Container>
       {word ? (
         <>
@@ -256,7 +305,7 @@ const Home = () => {
                   placeholder="Enter the word on your mind!"
                 />
               </Form>
-              <p>Please enter nouns only!</p>
+              <p>Please enter Eng & nouns only!</p>
             </SubmitWrap>
             <WordViewWrap>
               <Word wordLength={word.length}>{word}</Word>
@@ -264,11 +313,24 @@ const Home = () => {
             </WordViewWrap>
           </LeftCon>
           <RightCon>
-            <WordCloudWrap
+
+          {relatedWords.length < 1 ? 
+          (<>
+          <Snake>
+    <img src={snakeImg} alt="snake" />
+  </Snake>
+  <He>
+    <img src={he} alt="he" />
+  </He>
+  <Thinking>
+  <img src={feedback} alt="feedback" />
+  </Thinking>
+          </>) : 
+            (<WordCloudWrap
               mainWord={word}
               relatedWords={relatedWords}
               onWordClick={handleWordClick}
-            />
+            />)}
           </RightCon>
         </>
       ) : (
@@ -284,20 +346,23 @@ const Home = () => {
                   placeholder="Enter the word on your mind!"
                 />
               </Form>
-              <p>Please enter nouns only!</p>
+              <p>Please enter Eng & nouns only!</p>
             </SubmitWrap>
           </LeftCon>
           <RightCon>
-            <Snake>
-              <img src={snakeImg} alt="snake" />
-            </Snake>
-            <Think>
-              <img src={thinkingImg} alt="thinking" />
-            </Think>
-          </RightCon>
+  <Snake>
+    <img src={snakeImg} alt="snake" />
+  </Snake>
+  <Think>
+      <img src={thinkingImg} alt="thinking" />
+   
+  </Think>
+</RightCon>
+
         </>
       )}
     </Container>
+   </>
   );
 };
 

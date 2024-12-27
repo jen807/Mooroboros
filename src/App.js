@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from "react";
 import { fetchDefinition, fetchSynonyms } from "./api";
 
